@@ -1,6 +1,6 @@
 ﻿
 // Test1 
-// CustomerTenantBuilder.ViewWorkspaces();
+CustomerTenantBuilder.ViewWorkspaces();
 
 // Test 2
 // CustomerTenantBuilder.ViewCapacities();
@@ -11,4 +11,4 @@ string workspaceName = "Demo1 - Getting Started";
 // CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
 
 // Test 4
-CustomerTenantBuilder.CreateCustomerTenantWithUsers(workspaceName);
+// CustomerTenantBuilder.CreateCustomerTenantWithUsers(workspaceName);
