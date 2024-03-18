@@ -4317,18 +4317,14 @@
         "measures": [
           {
             "name": "Sales Revenue",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"currencyCulture\":\"en-US\"}"
-              }
-            ],
+            "displayFolder": "Sales Metrics",
             "expression": "Sum(Sales[Sales])",
-            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "formatString": "\\$#,0;(\\$#,0);\\$#,0",
             "lineageTag": "5ea1636a-303f-44db-b500-622529d0749d"
           },
           {
             "name": "Customer Count",
+            "displayFolder": "Sales Metrics",
             "expression": "DISTINCTCOUNT(Sales[CustomerId])",
             "formatString": "#,0",
             "lineageTag": "94141404-6d60-41fe-a767-7af9150d25b2"
@@ -4341,9 +4337,9 @@
                 "value": "{\"isCustom\":true}"
               }
             ],
-            "displayFolder": "Dates",
+            "displayFolder": "Date Metrics",
             "expression": "FIRSTDATE(Sales[Date])",
-            "formatString": "mmmm dd, yyyy",
+            "formatString": "mmmm d, yyyy",
             "lineageTag": "57b47456-57b9-4248-9600-2497e60f375c"
           },
           {
@@ -4354,19 +4350,21 @@
                 "value": "{\"isCustom\":true}"
               }
             ],
-            "displayFolder": "Dates",
+            "displayFolder": "Date Metrics",
             "expression": "LASTDATE(Sales[Date])",
-            "formatString": "mmmm dd, yyyy",
+            "formatString": "mmmm d, yyyy",
             "lineageTag": "d1101050-6e52-453f-87df-58bdcb744a13"
           },
           {
             "name": "Units Sold",
+            "displayFolder": "Sales Metrics",
             "expression": "SUM(Sales[Quantity])",
             "formatString": "#,0",
             "lineageTag": "5e914420-dc4c-4a47-b376-6fd6ade30050"
           },
           {
             "name": "Customer Rank",
+            "displayFolder": "Ranking Metrics",
             "expression": [
               "",
               "IF( ",
@@ -4382,6 +4380,7 @@
           },
           {
             "name": "Product Rank",
+            "displayFolder": "Ranking Metrics",
             "expression": [
               "",
               "IF( ",
