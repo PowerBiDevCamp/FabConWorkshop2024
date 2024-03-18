@@ -107,7 +107,11 @@ namespace Demo2_CreateItem.Properties {
         ///   Looks up a localized string similar to {
         ///  &quot;version&quot;: &quot;1.0&quot;,
         ///  &quot;settings&quot;: {}
-        ///}.
+        ///}
+        ///
+        ///
+        ///
+        ///.
         /// </summary>
         internal static string definition_pbidataset {
             get {
@@ -318,18 +322,17 @@ namespace Demo2_CreateItem.Properties {
         ///        &quot;value&quot;: &quot;[\&quot;Products\&quot;,\&quot;CSV_FILE_ROOT\&quot;,\&quot;Customers\&quot;,\&quot;Sales\&quot;,\&quot;Invoices\&quot;]&quot;
         ///      },
         ///      {
-        ///        &quot;name&quot;: &quot;__LastRPTime&quot;,
-        ///  [rest of string was truncated]&quot;;.
+        ///        &quot;nam [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string sales_model_import_v2_json {
+        internal static string sales_model_import_v2_bim {
             get {
-                return ResourceManager.GetString("sales_model_import_v2_json", resourceCulture);
+                return ResourceManager.GetString("sales_model_import_v2_bim", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;config&quot;: &quot;{\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;themeCollection\&quot;:{\&quot;baseTheme\&quot;:{\&quot;name\&quot;:\&quot;CY24SU02\&quot;,\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;type\&quot;:2}},\&quot;activeSectionIndex\&quot;:0,\&quot;bookmarks\&quot;:[{\&quot;displayName\&quot;:\&quot;GoToSalesSummary\&quot;,\&quot;name\&quot;:\&quot;Bookmark6f5e36cc8e2f3a092c1a\&quot;,\&quot;explorationState\&quot;:{\&quot;version\&quot;:\&quot;1.11\&quot;,\&quot;activeSection\&quot;:\&quot;ReportSectiona18a43bbfb47eea44096\&quot;,\&quot;filters\&quot;:{\&quot;byExpr\&quot;:[{\&quot;name\&quot;:\&quot;Filterc78765fc0917a6c3c326\&quot;,\&quot;type\&quot;:\&quot;Categorical\&quot;,\&quot;filter\&quot;:{\&quot;Version\&quot;:2,\&quot;From\&quot;:[{\&quot;Name\&quot;:\&quot;l\&quot;,\&quot;Entity\&quot;:\&quot;Languag [rest of string was truncated]&quot;;.
+        ///  &quot;config&quot;: &quot;{\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;themeCollection\&quot;:{\&quot;baseTheme\&quot;:{\&quot;name\&quot;:\&quot;CY24SU02\&quot;,\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;type\&quot;:2}},\&quot;activeSectionIndex\&quot;:0,\&quot;bookmarks\&quot;:[{\&quot;displayName\&quot;:\&quot;GoToSalesSummary\&quot;,\&quot;name\&quot;:\&quot;Bookmark6f5e36cc8e2f3a092c1a\&quot;,\&quot;explorationState\&quot;:{\&quot;version\&quot;:\&quot;1.3\&quot;,\&quot;activeSection\&quot;:\&quot;ReportSection\&quot;,\&quot;filters\&quot;:{\&quot;byExpr\&quot;:[{\&quot;name\&quot;:\&quot;Filterc78765fc0917a6c3c326\&quot;,\&quot;type\&quot;:\&quot;Categorical\&quot;,\&quot;filter\&quot;:{\&quot;Version\&quot;:2,\&quot;From\&quot;:[{\&quot;Name\&quot;:\&quot;l\&quot;,\&quot;Entity\&quot;:\&quot;Languages\&quot;,\&quot;Type\&quot;:0}],\&quot;W [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sales_report_json {
             get {
@@ -339,7 +342,7 @@ namespace Demo2_CreateItem.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;config&quot;: &quot;{\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;themeCollection\&quot;:{\&quot;baseTheme\&quot;:{\&quot;name\&quot;:\&quot;CY24SU02\&quot;,\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;type\&quot;:2},\&quot;customTheme\&quot;:{\&quot;name\&quot;:\&quot;NewExecutive\&quot;,\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;type\&quot;:2}},\&quot;activeSectionIndex\&quot;:0,\&quot;bookmarks\&quot;:[{\&quot;displayName\&quot;:\&quot;GoToSalesSummary\&quot;,\&quot;name\&quot;:\&quot;Bookmark6f5e36cc8e2f3a092c1a\&quot;,\&quot;explorationState\&quot;:{\&quot;version\&quot;:\&quot;1.3\&quot;,\&quot;activeSection\&quot;:\&quot;ReportSectiona18a43bbfb47eea44096\&quot;,\&quot;filters\&quot;:{\&quot;byExpr\&quot;:[{\&quot;name\&quot;:\&quot;Filterc78765fc0917a6c3c326\&quot;,\&quot;type\&quot;:\&quot;Categorical [rest of string was truncated]&quot;;.
+        ///  &quot;config&quot;: &quot;{\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;themeCollection\&quot;:{\&quot;baseTheme\&quot;:{\&quot;name\&quot;:\&quot;CY24SU02\&quot;,\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;type\&quot;:2},\&quot;customTheme\&quot;:{\&quot;name\&quot;:\&quot;NewExecutive\&quot;,\&quot;version\&quot;:\&quot;5.51\&quot;,\&quot;type\&quot;:2}},\&quot;activeSectionIndex\&quot;:0,\&quot;bookmarks\&quot;:[{\&quot;displayName\&quot;:\&quot;GoToSalesSummary\&quot;,\&quot;name\&quot;:\&quot;Bookmark6f5e36cc8e2f3a092c1a\&quot;,\&quot;explorationState\&quot;:{\&quot;version\&quot;:\&quot;1.3\&quot;,\&quot;activeSection\&quot;:\&quot;ReportSection\&quot;,\&quot;filters\&quot;:{\&quot;byExpr\&quot;:[{\&quot;name\&quot;:\&quot;Filterc78765fc0917a6c3c326\&quot;,\&quot;type\&quot;:\&quot;Categorical\&quot;,\&quot;filter\&quot;:{\&quot;Ver [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sales_report_v2_json {
             get {

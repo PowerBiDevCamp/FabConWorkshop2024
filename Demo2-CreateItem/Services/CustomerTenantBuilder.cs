@@ -3,6 +3,44 @@
 
 public class CustomerTenantBuilder {
 
+  public static void ViewWorkspaces() {
+
+    Console.WriteLine("View workspaces accessible to current user");
+    Console.WriteLine();
+
+    var workspcaes = FabricUserApi.GetWorkspaces();
+
+    Console.WriteLine(" > Workspaces List");
+    foreach (var workspace in workspcaes) {
+      Console.WriteLine("   - {0} ({1})", workspace.displayName, workspace.id);
+    }
+
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
+  }
+
+  public static void ViewCapacities() {
+
+    Console.WriteLine("View capacities accessible to current user");
+    Console.WriteLine();
+
+    var capacities = FabricUserApi.GetCapacities();
+
+    Console.WriteLine(" > Capacities List");
+    foreach (var capacity in capacities) {
+      Console.WriteLine("   - [{0}] {1} ({2})", capacity.sku, capacity.displayName, capacity.id);
+    }
+
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
+  }
+
   public static void CreateCustomerTenant(string WorkspaceName) {
 
     Console.WriteLine("Provision a new Fabric customer tenant");
@@ -50,9 +88,9 @@ public class CustomerTenantBuilder {
     Console.Write("Press ENTER to open workspace in the browser");
     Console.ReadLine();
 
-    WebPageGenerator.GenerateReportPageUserOwnsData(workspace.id, report.id);
-
-    WebPageGenerator.GenerateReportPageAppOwnsData(workspace.id, report.id);
+    // uncomment next two lines to test Power BI embedding
+    // WebPageGenerator.GenerateReportPageUserOwnsData(workspace.id, report.id);
+    // WebPageGenerator.GenerateReportPageAppOwnsData(workspace.id, report.id);
 
     OpenWorkspaceInBrowser(workspace.id);
 
@@ -65,11 +103,12 @@ public class CustomerTenantBuilder {
 
     FabricWorkspace workspace = FabricUserApi.GetWorkspaceByName(WorkspaceName);
 
-    var model = FabricUserApi.GetSemanticModelByName(workspace.id, "Product Sales");
+    FabricItem model = FabricUserApi.GetSemanticModelByName(workspace.id, "Product Sales");
 
-    var updateModelRequest = FabricItemDefinitionFactory.GetImportedSalesModelUpdateRequest();
+    FabricItemUpdateDefinitionRequest updateModelRequest = 
+      FabricItemDefinitionFactory.GetImportedSalesModelUpdateRequest();
 
-    Console.Write(" > Calling UpdateItem API to update item definition for sementic model ");
+    Console.Write(" > Calling UpdateItemDefinition API to update item definition for sementic model");
     FabricUserApi.UpdateItemDefinition(workspace.id, model.id, updateModelRequest);
 
     Console.WriteLine("   - Sementic model item definition updated");
@@ -82,7 +121,6 @@ public class CustomerTenantBuilder {
 
   }
 
-
   public static void UpdateSalesReport(string WorkspaceName) {
 
     Console.WriteLine("Updating item definition for report named Product Sales");
@@ -90,24 +128,22 @@ public class CustomerTenantBuilder {
 
     FabricWorkspace workspace = FabricUserApi.GetWorkspaceByName(WorkspaceName);
 
-    var model = FabricUserApi.GetSemanticModelByName(workspace.id, "Product Sales");
-    var report = FabricUserApi.GetReportByName(workspace.id, "Product Sales");
+    FabricItem model = FabricUserApi.GetSemanticModelByName(workspace.id, "Product Sales");
+    FabricItem report = FabricUserApi.GetReportByName(workspace.id, "Product Sales");
 
-    var updateReportRequest = FabricItemDefinitionFactory.GetSalesReportUpdateThemeRequest(model.id, "Product Sales");
+    FabricItemUpdateDefinitionRequest updateReportRequest = 
+      FabricItemDefinitionFactory.GetSalesReportUpdateRequest(model.id, "Product Sales");
 
-    Console.Write(" > Calling UpdateItem API to update item definition for report");
+    Console.Write(" > Calling UpdateItemDefinition API to update item definition for report");
 
     FabricUserApi.UpdateItemDefinition(workspace.id, report.id, updateReportRequest);
+
     Console.WriteLine("   - Report item definition updated");
     Console.WriteLine();
 
     Console.Write("Press ENTER to open workspace in the browser");
     Console.ReadLine();
-
-    WebPageGenerator.GenerateReportPageUserOwnsData(workspace.id, report.id);
-
-    WebPageGenerator.GenerateReportPageAppOwnsData(workspace.id, report.id);
-
+  
     OpenWorkspaceInBrowser(workspace.id);
 
   }

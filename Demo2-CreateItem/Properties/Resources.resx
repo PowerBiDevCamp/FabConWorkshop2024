@@ -142,8 +142,8 @@
   <data name="sales_model_import_bim" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ItemDefinitions\SementicModels\sales_model_import.bim;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="sales_model_import_v2_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ItemDefinitions\SementicModels\sales_model_import_v2.bim;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;iso-8859-1</value>
+  <data name="sales_model_import_v2_bim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ItemDefinitions\SementicModels\sales_model_import_v2.bim;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="sales_report_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ItemDefinitions\Reports\sales_report.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

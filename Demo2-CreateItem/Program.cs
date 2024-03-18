@@ -1,18 +1,18 @@
 ﻿
 string workspaceName = "Demo2 - CreateItem";
 
-// Test1 
-// CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
+// Setup: View capacities to update AppSettings.cs with PremiumCapacityId
+CustomerTenantBuilder.ViewCapacities();
 
-// Test2 
+// Test1
 // CustomerTenantBuilder.CreateCustomerTenantWithImportedSalesModel(workspaceName);
 
-// Test3
+// Test2
 // FabricUserApi.ExportItemDefinitionsFromWorkspace(workspaceName);
 
-// Test4
+// Test3
 // CustomerTenantBuilder.UpdateSalesModel(workspaceName);
 
-// Test5
-CustomerTenantBuilder.UpdateSalesReport(workspaceName);
+// Test4
+// CustomerTenantBuilder.UpdateSalesReport(workspaceName);
 

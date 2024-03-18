@@ -334,7 +334,12 @@ public class FabricUserApi {
 
     var items = JsonSerializer.Deserialize<FabricItemList>(jsonResponse).value;
 
-    List<string> unsupportedItems = new List<string>() { FabricItemType.Lakehouse, FabricItemType.SQLEndpoint, FabricItemType.Dashboard, FabricItemType.PaginatedReport };
+    // list of items types that do not support getItemDefinition
+    List<string> unsupportedItems = new List<string>() {
+      FabricItemType.Lakehouse, FabricItemType.SQLEndpoint, FabricItemType.Warehouse ,
+      FabricItemType.Dashboard, FabricItemType.PaginatedReport
+    };
+
     foreach (var item in items) {
       if (!unsupportedItems.Contains(item.type)) {
         try {

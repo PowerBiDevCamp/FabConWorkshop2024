@@ -33,7 +33,7 @@ public class FabricItemDefinitionFactory {
   public static FabricItemUpdateDefinitionRequest GetImportedSalesModelUpdateRequest() {
 
     string part1FileContent = Demo2_CreateItem.Properties.Resources.definition_pbidataset;
-    string part2FileContent = Demo2_CreateItem.Properties.Resources.sales_model_import_v2_json;
+    string part2FileContent = Demo2_CreateItem.Properties.Resources.sales_model_import_v2_bim;
 
     FabricItemUpdateDefinitionRequest updateRequest = new FabricItemUpdateDefinitionRequest {
       definition = new FabricItemDefinition {
@@ -54,7 +54,6 @@ public class FabricItemDefinitionFactory {
 
     return updateRequest;
   }
-
 
   public static FabricItemCreateRequest GetSalesReportCreateRequest(string SemanticModelId, string DisplayName) {
 
@@ -92,7 +91,7 @@ public class FabricItemDefinitionFactory {
     return itemCreateRequest;
   }
 
-  public static FabricItemUpdateDefinitionRequest GetSalesReportUpdateThemeRequest(string SemanticModelId, string DisplayName) {
+  public static FabricItemUpdateDefinitionRequest GetSalesReportUpdateRequest(string SemanticModelId, string DisplayName) {
 
     string part1FileContent = Demo2_CreateItem.Properties.Resources.definition_pbir.Replace("{SEMANTIC_MODEL_ID}", SemanticModelId);
     string part2FileContent = Demo2_CreateItem.Properties.Resources.sales_report_v2_json;
@@ -132,7 +131,6 @@ public class FabricItemDefinitionFactory {
 
     return itemUpdateDefinitionRequest;
   }
-
 
   public static void DeleteAllTemplateFiles(string WorkspaceName) {
     string targetFolder = AppSettings.LocalTemplatesFolder + (string.IsNullOrEmpty(WorkspaceName) ? "" : WorkspaceName + @"\");
