@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿
+using Microsoft.Data.SqlClient;
 
 public class SqlConnectionWriter {
 
@@ -17,7 +18,6 @@ public class SqlConnectionWriter {
     builder.DataSource = this.datasetServer;
     builder.InitialCatalog = this.datasetName;
     builder.ConnectTimeout = 120;
-    //builder.Authentication = SqlAuthenticationMethod.NotSpecified;
     this.connection.ConnectionString = builder.ConnectionString;
     this.connection.AccessToken = AzureAdTokenManager.GetAccessTokenForSqlEndPoint();
     this.connection.Open();
@@ -48,3 +48,4 @@ public class SqlConnectionWriter {
   }
 
 }
+

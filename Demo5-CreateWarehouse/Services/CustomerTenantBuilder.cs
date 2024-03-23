@@ -3,6 +3,44 @@
 
 public class CustomerTenantBuilder {
 
+  public static void ViewWorkspaces() {
+
+    Console.WriteLine("View workspaces accessible to current user");
+    Console.WriteLine();
+
+    var workspcaes = FabricUserApi.GetWorkspaces();
+
+    Console.WriteLine(" > Workspaces List");
+    foreach (var workspace in workspcaes) {
+      Console.WriteLine("   - {0} ({1})", workspace.displayName, workspace.id);
+    }
+
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
+  }
+
+  public static void ViewCapacities() {
+
+    Console.WriteLine("View capacities accessible to current user");
+    Console.WriteLine();
+
+    var capacities = FabricUserApi.GetCapacities();
+
+    Console.WriteLine(" > Capacities List");
+    foreach (var capacity in capacities) {
+      Console.WriteLine("   - [{0}] {1} ({2})", capacity.sku, capacity.displayName, capacity.id);
+    }
+
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
+  }
+
   public static void CreateCustomerTenant(string WorkspaceName) {
 
     Console.WriteLine("Provision a new Fabric customer tenant");
@@ -125,12 +163,10 @@ public class CustomerTenantBuilder {
     Console.WriteLine("   > Executing stored procedure to create all tables");
     sqlWriter.ExecuteSql("EXEC create_all_tables");
 
-
     sqlWriter.ExecuteSql(Demo5_CreateWarehouse.Properties.Resources.CreateSproc_RefreshProducts_sql);
     sqlWriter.ExecuteSql(Demo5_CreateWarehouse.Properties.Resources.CreateSproc_RefreshCustomers_sql);
     sqlWriter.ExecuteSql(Demo5_CreateWarehouse.Properties.Resources.CreateSproc_RefreshSales_sql);
     sqlWriter.ExecuteSql(Demo5_CreateWarehouse.Properties.Resources.CreateSproc_RefreshCalendar_sql);
-
 
     Console.WriteLine("   > Executing stored procedure to refresh products table");
     sqlWriter.ExecuteSql("EXEC refresh_products");
@@ -174,8 +210,9 @@ public class CustomerTenantBuilder {
     Console.Write("Press ENTER to open workspace in the browser");
     Console.ReadLine();
 
-    WebPageGenerator.GenerateReportPageUserOwnsData(workspace.id, report.id);
-    WebPageGenerator.GenerateReportPageAppOwnsData(workspace.id, report.id);
+    // uncomment next two lines to test Power BI embedding
+    // WebPageGenerator.GenerateReportPageUserOwnsData(workspace.id, report.id);
+    // WebPageGenerator.GenerateReportPageAppOwnsData(workspace.id, report.id);
 
     OpenWorkspaceInBrowser(workspace.id);
 
@@ -187,7 +224,6 @@ public class CustomerTenantBuilder {
     Console.ReadLine();
 
   }
-
 
   private static void OpenWorkspaceInBrowser(string WorkspaceId) {
 

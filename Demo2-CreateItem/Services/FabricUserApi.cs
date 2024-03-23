@@ -420,7 +420,6 @@ public class FabricUserApi {
     return null;
   }
 
-
   public static FabricItem UpdateItem(string WorkspaceId, string ItemId, string ItemName, string Description = null) {
     // NOTE: UpdateItem API does not work in initial Public preview release 
 

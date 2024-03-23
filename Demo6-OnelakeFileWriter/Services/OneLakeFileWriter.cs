@@ -1,7 +1,6 @@
 ﻿using Azure.Core;
 using Azure.Storage.Files.DataLake;
 using Microsoft.Identity.Client;
-using System.Text;
 
 public class OneLakeTokenCredentials : TokenCredential {
 
@@ -26,7 +25,7 @@ public class OneLakeTokenCredentials : TokenCredential {
 
 public class OneLakeFileWriter {
 
-  private const string oneLakeUrl = "https://onelake.blob.fabric.microsoft.com";
+  private const string oneLakeUrl = AppSettings.OneLakeBaseUrl;
   private static readonly Uri oneLakeUri = new Uri(oneLakeUrl);
 
   private string workspaceId;
@@ -57,14 +56,4 @@ public class OneLakeFileWriter {
     return file;
   }
 
-  public void UploadMainFileForSparkJobDefinition(string SparkJobDefinitionId, string FileContent) {
-    var sjdFolder = this.fileSystemClient.GetDirectoryClient(SparkJobDefinitionId + @"\Main");
-    var file = sjdFolder.GetFileClient("Main.py");
-    file.Create();
-    var fileContentStream = new MemoryStream(Encoding.UTF8.GetBytes(FileContent));
-    file.Append(fileContentStream, 0);
-    file.Flush(fileContentStream.Length);
-  }
-
 }
-

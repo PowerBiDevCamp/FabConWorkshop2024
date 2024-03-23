@@ -13,5 +13,4 @@
   public const string LocalWebPageFolder = @"..\..\..\WebPages\";
   public const string LocalTemplatesFolder = @"..\..\..\ItemDefinitionExports\";
 
-
 }

@@ -124,6 +124,59 @@ public class AdoProjectManager {
     return null;
   }
 
+  public static void CreateProject(string Name) {
+
+    Console.WriteLine(" - Creating new project in Azure Dev Ops");
+
+    var existingProject = GetProject(Name);
+
+    if (existingProject != null) {
+      DeleteProject(existingProject.id);
+    }
+
+    var createRequest = new ADOProjectCreateRequest {
+      name = Name,
+      description = "ADO Project used to demonstrate Fabric GIT Integration",
+      visibility = 0,
+      capabilities = new ADOCapabilities {
+        versioncontrol = new ADOVersioncontrol {
+          sourceControlType = "Git"
+        },
+        processTemplate = new ADOProcessTemplate {
+          templateTypeId = AdoProjectTemplateId
+        }
+      }
+    };
+
+    string postBody = JsonSerializer.Serialize(createRequest, jsonOptions);
+
+    string jsonResponse = ExecutePostRequest("/_apis/projects", postBody);
+
+    var createOperation = JsonSerializer.Deserialize<ADOProjectOperation>(jsonResponse);
+
+    while (createOperation.status != "succeeded") {
+      Thread.Sleep(3000);
+      jsonResponse = ExecuteGetRequest("/_apis/operations/" + createOperation.id);
+      createOperation = JsonSerializer.Deserialize<ADOProjectOperation>(jsonResponse);
+    }
+
+    Console.WriteLine("   > Project successfully created");
+
+    // get main respository for new project
+    jsonResponse = ExecuteGetRequest("/" + Name + "/_apis/git/repositories");
+    var mainRepository = JsonSerializer.Deserialize<ADORepositoryList>(jsonResponse).value[0];
+
+    // constructl URL for push requests to main repository
+    string pushUrl = "/" + Name + "/_apis/git/repositories/" + mainRepository.id + "/pushes";
+
+    // submit initial push request with ReadMe.md
+    ADOPushRequest pushRequest = GetInitialPushRequestWithReadMe(Name);
+    string pushPostBody = JsonSerializer.Serialize(pushRequest, jsonOptions);
+    jsonResponse = ExecutePostRequest(pushUrl, pushPostBody);
+    Console.WriteLine("   > Project intialized with ReadMe.md");
+
+  }
+
   public static void CreateProject(string Name, FabricWorkspace Workspace) {
 
     Console.WriteLine(" - Creating new project in Azure Dev Ops");
@@ -222,8 +275,6 @@ public class AdoProjectManager {
       createOperation = JsonSerializer.Deserialize<ADOProjectOperation>(jsonResponse);
     }
 
-    Console.WriteLine("   > Project successfully created");
-
     // get main respository for new project
     jsonResponse = ExecuteGetRequest("/" + Name + "/_apis/git/repositories");
     var mainRepository = JsonSerializer.Deserialize<ADORepositoryList>(jsonResponse).value[0];
@@ -235,7 +286,7 @@ public class AdoProjectManager {
     ADOPushRequest pushRequest = GetInitialPushRequestWithReadMe(Name, Workspace);
     string pushPostBody = JsonSerializer.Serialize(pushRequest, jsonOptions);
     jsonResponse = ExecutePostRequest(pushUrl, pushPostBody);
-    Console.WriteLine("   > Project intialized with ReadMe.md");
+    Console.WriteLine("   > Uploading and committing ReadMe.md to intialize ADO repository");
 
     // capture push response
     var pushResponse = JsonSerializer.Deserialize<ADOPushResponse>(jsonResponse, jsonOptions);
@@ -243,17 +294,51 @@ public class AdoProjectManager {
     // get new object Id from push response
     string lastObjectId = pushResponse.refUpdates[0].newObjectId;
 
-    Console.WriteLine();
+    Console.WriteLine("   > Uploading and committing PBIP sources files ADO repository");
 
     pushRequest = GetPushRequestWithImportModeSourceFiles(lastObjectId);
     pushPostBody = JsonSerializer.Serialize(pushRequest, jsonOptions);
     ExecutePostRequest(pushUrl, pushPostBody);
 
+    Console.WriteLine("   > Azure Dev Ops project initialization complete");
+    Console.WriteLine();
   }
- 
+
   private static string GetPartPath(string ItemFolderPath, string FilePath) {
     int ItemFolderPathOffset = ItemFolderPath.Length; // + 1;
     return FilePath.Substring(ItemFolderPathOffset).Replace("\\", "/");
+  }
+
+  public static ADOPushRequest GetInitialPushRequestWithReadMe(string Name) {
+
+    // update markdown content for ReadMe.md
+    string ReadMeContent = "# ADO Project used for GIT Integration with Fabric Workspace";
+
+    return new ADOPushRequest {
+      refUpdates = new List<ADORef> {
+          new ADORef {
+            name = "refs/heads/main",
+            oldObjectId = "0000000000000000000000000000000000000000"
+          }
+        },
+      commits = new List<ADOCommit> {
+          new ADOCommit {
+            comment = "Initial commit with ReadMe.md",
+            changes = new List<ADOChange> {
+              new ADOChange {
+                changeType = "add",
+                item = new ADOItem {
+                  path = "/README.md"
+                },
+                newContent = new ADONewContent {
+                  content = ReadMeContent,
+                  contentType = "rawtext"
+                }
+              }
+            }
+          }
+        }
+    };
   }
 
   public static ADOPushRequest GetInitialPushRequestWithReadMe(string Name, FabricWorkspace Workspace) {
@@ -375,7 +460,7 @@ public class AdoProjectManager {
 
   }
 
-  // delete logic
+  // delete action methods - be careful with these
   public static void DeleteProject(string ProjectId) {
     string jsonResponse = ExecuteDeleteRequest("/_apis/projects/" + ProjectId);
     var deleteOperation = JsonSerializer.Deserialize<ADOProjectOperation>(jsonResponse);

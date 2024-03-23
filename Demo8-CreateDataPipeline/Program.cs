@@ -1,16 +1,8 @@
 ﻿
-string workspaceName = "Acme Corp";
+string workspaceName = "Demo8 - CreateDataPipeline";
 
-//CustomerTenantBuilder.CreateCustomerTenantWithDataPipeline(workspaceName);
+// Setup: View capacities to update AppSettings.cs with PremiumCapacityId
+// CustomerTenantBuilder.ViewCapacities();
 
-
-//CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);
-
-
+// Test1
 CustomerTenantBuilder.CreateCustomerTenantWithDataPipeline(workspaceName);
-
-// Test1 
-// CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
-
-// Test2
-//CustomerTenantBuilder.CreateShortcutsToStagingWorkspace(workspaceName);

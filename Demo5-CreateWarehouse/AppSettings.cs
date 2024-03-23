@@ -2,6 +2,7 @@
 public class AppSettings {
 
   public const string FabricUserApiBaseUrl = "https://api.fabric.microsoft.com/v1";
+  public const string PowerBiRestApiBaseUrl = "https://api.powerbi.com";
 
   // use App Id for PowerShell Azure Auth - it works in every Fabric tenant
   public const string ApplicationId = "1950a258-227b-4e31-a9cf-717495945fc2";

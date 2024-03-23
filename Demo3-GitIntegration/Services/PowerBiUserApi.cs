@@ -23,7 +23,7 @@ public class PowerBiUserApi {
 
   static PowerBiUserApi() {
     string accessToken = AzureAdTokenManager.GetAccessToken(FabricPermissionScopes.Fabric_User_Impresonation);
-    string urlPowerBiServiceApiRoot = "https://api.powerbi.com/";
+    string urlPowerBiServiceApiRoot = AppSettings.PowerBiRestApiBaseUrl + "/";
     var tokenCredentials = new TokenCredentials(accessToken, "Bearer");
     pbiClient = new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);
   }
@@ -179,25 +179,6 @@ public class PowerBiUserApi {
     return EmbedTokenResult.Token;
 
   }
-
-  public static FabricReportEmbeddingData GetReportEmbeddingDataUserOwnsData(string workspaceId, string reportId) {
-
-    var report = pbiClient.Reports.GetReportInGroup(new Guid(workspaceId), new Guid(reportId));
-    var embedUrl = "https://app.powerbi.com/reportEmbed";
-    var reportName = report.Name;
-    var accessToken = AzureAdTokenManager.GetAccessToken(FabricPermissionScopes.Fabric_User_Impresonation);
-
-    return new FabricReportEmbeddingData {
-      reportId = reportId.ToString(),
-      reportName = reportName,
-      embedUrl = embedUrl,
-      accessToken = accessToken,
-      accessTokenType = "models.TokenType.Aad"
-    };
-
-  }
-
-
 
 }
 

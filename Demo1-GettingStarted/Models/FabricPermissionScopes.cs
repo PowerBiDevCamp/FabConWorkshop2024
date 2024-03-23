@@ -1,6 +1,12 @@
 ﻿
 public class FabricPermissionScopes {
 
+  // this provides all delegated permission scopes to current user
+  public static readonly string[] Fabric_User_Impresonation = new string[] {
+      "https://analysis.windows.net/powerbi/api/user_impersonation"
+  };
+
+
   public const string resourceUri = "https://api.fabric.microsoft.com/";
 
   // delegated permission scopes used for user token acquisition
@@ -16,10 +22,6 @@ public class FabricPermissionScopes {
       "https://api.fabric.microsoft.com/Workspace.GitCommit.All",
     };
 
-  // this provides all delegated permission scopes to currwnt user
-  public static readonly string[] Fabric_User_Impresonation = new string[] {
-      "https://analysis.windows.net/powerbi/api/user_impersonation"    
-  };
 
 
 }

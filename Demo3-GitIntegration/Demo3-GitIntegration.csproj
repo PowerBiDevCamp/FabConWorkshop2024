@@ -9,33 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\localSettings.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\diagramLayout.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\item.config.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\item.metadata.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Report\.pbi\localSettings.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Report\item.config.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Report\item.metadata.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Report\report.json" />
-    <Content Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Report\StaticResources\SharedResources\BaseThemes\CY24SU02.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition.pbidataset" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\cultures\en-US.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\database.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\expressions.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\model.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\relationships.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\tables\Calendar.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\tables\Customers.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\tables\Products.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Dataset\definition\tables\Sales.tmdl" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.pbip" />
-    <None Include="GitSourceStarterFiles\Product Sales.Report\.pbi\Product Sales.Report\definition.pbir" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Identity.Client" Version="4.59.0" />
     <PackageReference Include="Microsoft.PowerBI.Api" Version="4.18.0" />
   </ItemGroup>

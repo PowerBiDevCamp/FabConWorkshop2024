@@ -1,14 +1,11 @@
 ﻿
 string workspaceName = "Demo4 - CreateLakehouse";
 
-// Test1 
-// CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
+// Setup: View capacities to update AppSettings.cs with PremiumCapacityId
+// CustomerTenantBuilder.ViewCapacities();
 
-// Test2
+// Test1
 // CustomerTenantBuilder.CreateCustomerTenantForNotebookDemo(workspaceName);
 
-// Test3
-// FabricUserApi.ExportItemDefinitionsFromWorkspace(workspaceName);
-
-// Test4
+// Test2
 CustomerTenantBuilder.CreateCustomerTenantWithLakehouse(workspaceName);

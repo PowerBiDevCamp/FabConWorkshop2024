@@ -1,0 +1,70 @@
+{
+  "value": [
+    {
+      "name": "sales",
+      "path": "/Tables",
+      "target": {
+        "oneLake": {
+          "itemId": "34daa96e-8e98-4633-9b83-ba466f48969a",
+          "path": "Tables/sales",
+          "workspaceId": "28b997ba-7ada-4104-b01d-1f4f504b6cd8"
+        }
+      }
+    },
+    {
+      "name": "products",
+      "path": "/Tables",
+      "target": {
+        "oneLake": {
+          "itemId": "34daa96e-8e98-4633-9b83-ba466f48969a",
+          "path": "Tables/products",
+          "workspaceId": "28b997ba-7ada-4104-b01d-1f4f504b6cd8"
+        }
+      }
+    },
+    {
+      "name": "customers",
+      "path": "/Tables",
+      "target": {
+        "oneLake": {
+          "itemId": "34daa96e-8e98-4633-9b83-ba466f48969a",
+          "path": "Tables/customers",
+          "workspaceId": "28b997ba-7ada-4104-b01d-1f4f504b6cd8"
+        }
+      }
+    },
+    {
+      "name": "calendar",
+      "path": "/Tables",
+      "target": {
+        "oneLake": {
+          "itemId": "34daa96e-8e98-4633-9b83-ba466f48969a",
+          "path": "Tables/calendar",
+          "workspaceId": "28b997ba-7ada-4104-b01d-1f4f504b6cd8"
+        }
+      }
+    },
+    {
+      "name": "sales-data",
+      "path": "/Files",
+      "target": {
+        "adlsGen2": {
+          "connectionId": "6075573f-03db-4b86-bc21-cbd2796d3c2d",
+          "location": "https://devcampdemos.dfs.core.windows.net",
+          "subpath": "/sales-data"
+        }
+      }
+    },
+    {
+      "name": "bronze_landing_layer",
+      "path": "/Files",
+      "target": {
+        "oneLake": {
+          "itemId": "98f2f47f-83e2-4ada-a6e8-a3c516c4c578",
+          "path": "Files/bronze_landing_layer",
+          "workspaceId": "b119da70-015b-45c8-b3e4-ef44f9385ae7"
+        }
+      }
+    }
+  ]
+}

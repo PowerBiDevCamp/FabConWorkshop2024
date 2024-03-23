@@ -60,7 +60,7 @@ public class CustomerTenantBuilder {
   public static void CreateCustomerTenantWithUsers(string WorkspaceName) {
 
     Console.WriteLine("Provision a new Fabric customer tenant with role assignments");
-    FabricWorkspace workspace = FabricUserApi.CreateWorkspace(WorkspaceName, null, "Demo workspace");
+    FabricWorkspace workspace = FabricUserApi.CreateWorkspace(WorkspaceName, AppSettings.PremiumCapacityId, "Demo workspace");
 
     FabricUserApi.AddWorkspaceUser(workspace.id, AppSettings.TestUser1Id, WorkspaceRole.Admin);
     FabricUserApi.AddWorkspaceUser(workspace.id, AppSettings.TestUser2Id, WorkspaceRole.Viewer);

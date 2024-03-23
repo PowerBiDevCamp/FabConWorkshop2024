@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sales Report - App-Owns-Data</title>
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="js/jquery.js"></script>
+  <script src="js/powerbi.js"></script>
+</head>
+
+<body>
+
+  <div id="embedContainer" />
+
+  <script>
+
+    // data required for embedding Power BI report
+    var embedReportId = "d9ffcd4e-67d7-44fa-97bc-4611adef5c9d";
+    var embedUrl = "https://app.powerbi.com/reportEmbed";
+    var accessToken = "H4sIAAAAAAAEAB2Tx66DVgAF_-VtiQSYHikLeq8XTNmB6dgX00uUf89L9iMdaUbn7x8vv95jXv78-TM6ykaUfVE9gpAbkjjtW-BZgiQYGm-071w71GZctMONuLiRNGUyTFnI1MznhVSpVgFMBC0GLKyqYopbpnBXYatwyzXWHeus5rLAJjCzjQXvVK7QNTOXiILkplvbZg8YUI_HCRRFjCvECGhHjLIj2TiK6-vaMnb-dxdRj_cQzF5SwU6_cx-sDgN4oWtSxesuWaPgBs6c7LQZa2QT2VuT4wH2TT4ixEDKMUoGdbyeZCsZGwExPHWWyzGYxqkQdWXLkRyxfS8moGvv6g61D40ozsjcuqs3XK_HXrd-82E842QS8o_HfLiqk4DeaLhDfM8RefryRi2o9Ilrb1j8eI_CNFdzeNOk4kdNb2ylvgbh6JAcKbjGvDfRgojIStXh2_QD0t1jKCpt3zZ3aU2oF9YUjrTt2m8T8zIVW6cfzOZacZBo6XlVO5sq5ZVUrwoS-HUYnW5kJWp3I9OhmNp82k4jTbNURmhJ7_O6vOSh9NSUisMq7-kC8DcZyIFwirvt0eI9UBQJTA5NVKRQnH2lW6HOX_tCuIRtVkGQHiuI9mcXDgJGCE-mVAhDIm4-M8jzy-ElQh8fiN3N1KFxb17Li1iacpZ06-wejBqiUgoFeO1IlCGYzZ1O6d6hUZ8-AMz9GgOkZ9W3IHy2ZFWlxSysKEe7AtIuLfr9cdgPZl842eTusvYng8kEHajhmSk8861xIon1FwFY-Ay7y52OlOO95bttV0yXh3w1l3_ZIXqE0WvarVw67GJ_gQdIqIk4h-zmwzumtdyB5jXi9LN9LjbFoQ9S8F8OGmOP0vqUR54c1WLKZ5HtVC2eBZhOvu-tfRQkWmsfbrD9_PEjztd3Hc3q-r2T8gi-eY2ay2lT55EzhzsX6Wp36GOnentpJvdUk5vHRemLDnNov3vI4bfTokM7vzLbFkf9Xpd8xZgGYefY35hXHxvOTaRWxqzSUe-D80SfKKr42zfA70jdEC729d3TTgLOK9UcY5R_IROQCpOwJuLqxWrLS3S8n1xDQW9otbFORGUT1NS0bNeeU-t8Dvyye3GeeorI3EIiGrqqAtIN8qN1p5uc3nHyulrF0DGcHVBB03JvJmNVp5tqjuuQNrMVvEMBoms3CeH5UaLORU4VFFbeGeqmQXBF7Mvj0_ampJUMhebGWqFDXTVdcI8zQ3ZN0JVGn4pqv_OKDkVxUbCm4dBbnZLjr7_-03x922rWn7-WRfixR8oWuRhNYPzwDMIgW_5_CnQNzNdtrn6xg4jYKxJ55_7YSqTHKWSyxnVmAw2YcONZ83TGGiGNdNABwvhHsPMV_xtpe84AjXy2XLnkIMtXJMnj4GPYq7630731PV41lYgJfwTP-GKHCRaVhds3QC5OFY-PXHMcUi4tFWSYjH92GI2MmMZjvePQ0GetV5qVr5WpdPxWlRCMzTE1bXRDLutDwQ4iPHUs8l8qCiLOrCBvyZoXGNQbq7gTuQqU9daU_XX3BLZ8Jg8MfEYt3Fvmy_VZT-EWg5--7n_Z1NObPJFEHnU52jkNe-pwocRC5FswAhnt8fYw3MjTzSnTSSEXRec55wN8aysty2P0uWmKFLo3_qgtV7oQCCKrKv6L8c-_lagfQ0IGAAA=.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVVTLUVBU1QyLUItUFJJTUFSWS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldCIsImV4cCI6MTcxMTEzMzE1MywiYWxsb3dBY2Nlc3NPdmVyUHVibGljSW50ZXJuZXQiOnRydWV9";
+
+    // Get models object to access enums for embed configuration
+    var models = window['powerbi-client'].models;
+
+    var config = {
+      type: 'report',
+      id: embedReportId,
+      embedUrl: embedUrl,
+      accessToken: accessToken,
+      tokenType: models.TokenType.Embed,
+      settings: {
+        panes: {
+          filters: { visible: false, expanded: false },
+          pageNavigation: { visible: false }
+        }
+      }
+    };
+
+    // Get a reference to the embedded report HTML element
+    var reportContainer = document.getElementById('embedContainer');
+
+    // Embed the report and display it within the div container.
+    var report = powerbi.embed(reportContainer, config);
+
+    // Display Report object in browser console window
+    console.log(report);
+
+    // code to resize the reportContainer to the size of the hosting browser window.
+    $(function () {
+      var widthBuffer = 12;
+      var heightBuffer = 16;
+      $("#embedContainer").height($(window).height() - (heightBuffer));
+      $("#embedContainer").width($(window).width() - widthBuffer);
+      $(window).resize(function () {
+        $("#embedContainer").height($(window).height() - (heightBuffer));
+        $("#embedContainer").width($(window).width() - widthBuffer);
+      });
+    });
+
+  </script>
+
+</body>
+</html>

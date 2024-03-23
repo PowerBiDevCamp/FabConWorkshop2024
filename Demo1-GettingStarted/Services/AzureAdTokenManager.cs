@@ -9,20 +9,6 @@ public class AzureAdTokenManager {
   private static string applicationId = AppSettings.ApplicationId;
   private static string redirectUri = AppSettings.RedirectUri;
 
-  public static string GetAccessTokenInteractive(string[] scopes) {
-
-    // create new public client application
-    var appPublic = PublicClientApplicationBuilder.Create(applicationId)
-                  .WithAuthority(tenantCommonAuthority)
-                  .WithRedirectUri(redirectUri)
-                  .Build();
-
-    AuthenticationResult authResult = appPublic.AcquireTokenInteractive(scopes).ExecuteAsync().Result;
-
-    // return access token to caller
-    return authResult.AccessToken;
-  }
-
   public static string GetAccessToken(string[] scopes) {
 
     // create new public client application
@@ -43,6 +29,20 @@ public class AzureAdTokenManager {
     catch {
       authResult = appPublic.AcquireTokenInteractive(scopes).ExecuteAsync().Result;
     }
+
+    // return access token to caller
+    return authResult.AccessToken;
+  }
+
+  public static string GetAccessTokenInteractive(string[] scopes) {
+
+    // create new public client application
+    var appPublic = PublicClientApplicationBuilder.Create(applicationId)
+                  .WithAuthority(tenantCommonAuthority)
+                  .WithRedirectUri(redirectUri)
+                  .Build();
+
+    AuthenticationResult authResult = appPublic.AcquireTokenInteractive(scopes).ExecuteAsync().Result;
 
     // return access token to caller
     return authResult.AccessToken;
@@ -75,6 +75,5 @@ public class AzureAdTokenManager {
       }
     }
   }
-
 
 }

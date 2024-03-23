@@ -1,8 +1,8 @@
 ﻿
 string workspaceName = "Demo6 - OnelakeFileWriter";
 
-// Test1 
-// CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
+// Setup: View capacities to update AppSettings.cs with PremiumCapacityId
+CustomerTenantBuilder.ViewCapacities();
 
-// Test2
-CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);
+// Test1 
+// CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);

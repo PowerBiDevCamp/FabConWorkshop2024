@@ -1,16 +1,19 @@
-﻿
-string workspaceName = "Demo7 - CreateShortcut";
+﻿string workspaceName = "Demo7 - CreateShortcut";
 
-//CustomerTenantBuilder.CreateCustomerTenantWithAdlsGen2Shortcut(workspaceName);
+// Setup: View capacities to update AppSettings.cs with PremiumCapacityId
+//CustomerTenantBuilder.ViewCapacities();
 
-
-CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);
-
-
-//CustomerTenantBuilder.GetShortcutForLakehouse("Acme Corp", "Cutup");
-
-// Test1 
-// CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
+// Test1
+//CustomerTenantBuilder.CreateCustomerTenantWithEmptyLakehouse();
 
 // Test2
-//CustomerTenantBuilder.CreateShortcutsToStagingWorkspace(workspaceName);
+// CustomerTenantBuilder.GetShortcutForLakehouse();
+
+// Test3
+// CustomerTenantBuilder.CreateCustomerTenantWithShortcutExamples();
+
+// Test4
+CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);
+
+// Test5
+// CustomerTenantBuilder.CreateCustomerTenantAndLoadTaxiData();

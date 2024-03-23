@@ -679,7 +679,6 @@ public class FabricUserApi {
 
   }
 
-
   public static void LoadLakehouseTableFromParquet(string WorkspaceId, string LakehouseId, string SourceFile, string TableName) {
 
     string restUrl = "/workspaces/" + WorkspaceId + "/lakehouses/" + LakehouseId + "/tables/" + TableName + "/load";

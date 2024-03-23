@@ -1,10 +1,8 @@
 ﻿
 string workspaceName = "Demo5 - CreateWarehouse";
 
-// Test1 
-// CustomerTenantBuilder.CreateCustomerTenant(workspaceName);
+// Setup: View capacities to update AppSettings.cs with PremiumCapacityId
+CustomerTenantBuilder.ViewCapacities();
 
-// Test2
-//CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);
-
-FabricUserApi.ExportItemDefinitionsFromWorkspace(workspaceName);
+// Test1
+// CustomerTenantBuilder.CreateCustomerTenantWithWarehouse(workspaceName);

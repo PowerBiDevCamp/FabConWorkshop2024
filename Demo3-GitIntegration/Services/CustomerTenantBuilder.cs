@@ -3,6 +3,44 @@
 
 public class CustomerTenantBuilder {
 
+  public static void ViewWorkspaces() {
+
+    Console.WriteLine("View workspaces accessible to current user");
+    Console.WriteLine();
+
+    var workspcaes = FabricUserApi.GetWorkspaces();
+
+    Console.WriteLine(" > Workspaces List");
+    foreach (var workspace in workspcaes) {
+      Console.WriteLine("   - {0} ({1})", workspace.displayName, workspace.id);
+    }
+
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to continue");
+    Console.ReadLine();
+
+  }
+
+  public static void ViewCapacities() {
+
+    Console.WriteLine("View capacities accessible to current user");
+    Console.WriteLine();
+
+    var capacities = FabricUserApi.GetCapacities();
+
+    Console.WriteLine(" > Capacities List");
+    foreach (var capacity in capacities) {
+      Console.WriteLine("   - [{0}] {1} ({2})", capacity.sku, capacity.displayName, capacity.id);
+    }
+
+    Console.WriteLine();
+
+    Console.Write("\"Press ENTER to continue");
+    Console.ReadLine();
+
+  }
+
   public static void CreateCustomerTenant(string WorkspaceName) {
 
     Console.WriteLine("Provision a new Fabric customer tenant");
@@ -58,6 +96,21 @@ public class CustomerTenantBuilder {
 
   }
 
+  public static void CreateAzureDevOpsProject(string WorkspaceName) {
+
+    Console.WriteLine("Creating a new project in Azure Dev Ops namaed {0}", WorkspaceName);
+    Console.WriteLine();
+
+
+    // create new project in Azure Dev Ops
+    AdoProjectManager.CreateProject(WorkspaceName);
+
+    Console.WriteLine();
+    Console.WriteLine("Press ENTER to continue");
+    Console.ReadLine();
+
+  }
+
   public static void CreateCustomerTenantWithGitIntegration(string WorkspaceName) {
 
     Console.WriteLine("Provision a new Fabric tenant with GIT Integration");
@@ -105,13 +158,6 @@ public class CustomerTenantBuilder {
     Console.Write("Press ENTER to open workspace in the browser");
     Console.ReadLine();
 
-    Console.WriteLine();
-    Console.WriteLine("Mission complete");
-    Console.WriteLine();
-
-    Console.Write("Press ENTER to open workspace in the browser");
-    Console.ReadLine();
-
     OpenWorkspaceInBrowser(workspace.id);
 
   }
@@ -150,7 +196,15 @@ public class CustomerTenantBuilder {
     FabricUserApi.CommitWorkspaceToGit(workspace.id);
     FabricUserApi.UpdateWorkspaceFromGit(workspace.id);
 
+    Console.WriteLine();
+    Console.WriteLine("Customer tenant provisioning complete");
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
     OpenWorkspaceInBrowser(workspace.id);
+
 
   }
 
@@ -162,6 +216,84 @@ public class CustomerTenantBuilder {
     process.StartInfo = new ProcessStartInfo(@"C:\Program Files\Google\Chrome\Application\chrome.exe");
     process.StartInfo.Arguments = url + " --profile-directory=\"Profile 1\" ";
     process.Start();
+
+  }
+
+
+  // delete after use
+  public static void CreateCustomerTenantWithGitIntegrationListing(string WorkspaceName) {
+
+    FabricWorkspace workspace = FabricUserApi.CreateWorkspace(WorkspaceName);
+
+    FabricItemCreateRequest modelCreateRequest = FabricItemDefinitionFactory.GetImportedSalesModelCreateRequest("Product Sales");
+    var model = FabricUserApi.CreateItem(workspace.id, modelCreateRequest);
+    PowerBiUserApi.PatchAnonymousAccessWebCredentials(workspace.id, model.id);
+
+    FabricItemCreateRequest createRequestReport = FabricItemDefinitionFactory.GetSalesReportCreateRequest(model.id, "Product Sales");
+    var report = FabricUserApi.CreateItem(workspace.id, createRequestReport);
+
+    // create new project in Azure Dev Ops
+    AdoProjectManager.CreateProject(WorkspaceName, workspace);
+
+    var providerConnection = new GitProviderConnection {
+      gitProviderDetails = new GitProviderDetails {
+        gitProviderType = "AzureDevOps",
+        organizationName = "DevCampDevOps",
+        projectName = WorkspaceName,
+        repositoryName = WorkspaceName,
+        branchName = "main",
+        directoryName = "/"
+      }
+    };
+
+    FabricUserApi.ConnectWorkspaceToGitRepository(workspace.id, providerConnection);
+
+    Console.WriteLine();
+    Console.WriteLine("Customer tenant provisioning complete");
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
+    OpenWorkspaceInBrowser(workspace.id);
+
+  }
+
+  public static void CreateCustomerTenantWithSourceFilesFromGITListing(string WorkspaceName) {
+
+    FabricWorkspace workspace = FabricUserApi.CreateWorkspace(WorkspaceName);
+
+    AdoProjectManager.CreateProjectWithImportModeSourceFile(WorkspaceName, workspace);
+
+    var providerConnection = new GitProviderConnection {
+      gitProviderDetails = new GitProviderDetails {
+        gitProviderType = "AzureDevOps",
+        organizationName = "DevCampDevOps",
+        projectName = WorkspaceName,
+        repositoryName = WorkspaceName,
+        branchName = "main",
+        directoryName = "/"
+      }
+    };
+
+    FabricUserApi.ConnectWorkspaceToGitRepository(workspace.id, providerConnection);
+
+    var model = FabricUserApi.GetSemanticModelByName(workspace.id, "Product Sales");
+    PowerBiUserApi.PatchAnonymousAccessWebCredentials(workspace.id, model.id);
+    PowerBiUserApi.RefreshDataset(workspace.id, model.id);
+
+    FabricUserApi.CommitWorkspaceToGit(workspace.id);
+    FabricUserApi.UpdateWorkspaceFromGit(workspace.id);
+
+    Console.WriteLine();
+    Console.WriteLine("Customer tenant provisioning complete");
+    Console.WriteLine();
+
+    Console.Write("Press ENTER to open workspace in the browser");
+    Console.ReadLine();
+
+    OpenWorkspaceInBrowser(workspace.id);
+
 
   }
 
