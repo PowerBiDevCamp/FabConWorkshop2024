@@ -60,7 +60,7 @@ public class CustomerTenantBuilder {
 
   public static void CreateCustomerTenantWithDataPipeline(string WorkspaceName) {
 
-    Console.WriteLine("Provision new customer tenant with shortcut to ALDS container");
+    Console.WriteLine("Provision new customer tenant using Data Pipeline for ETL");
 
     string LakehouseName = "staging";
     FabricWorkspace workspace = FabricUserApi.CreateWorkspace(WorkspaceName, AppSettings.PremiumCapacityId);
