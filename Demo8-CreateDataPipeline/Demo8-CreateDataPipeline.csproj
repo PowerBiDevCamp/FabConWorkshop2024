@@ -10,11 +10,10 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.5" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
-    <PackageReference Include="Microsoft.PowerBI.Api" Version="4.17.0" />
-    <PackageReference Include="Azure.Identity" Version="1.10.3" />
-    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.17.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    <PackageReference Include="Microsoft.PowerBI.Api" Version="4.19.0" />
+    <PackageReference Include="Azure.Identity" Version="1.11.3" />
+    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.18.0" />
   </ItemGroup>
 
 
